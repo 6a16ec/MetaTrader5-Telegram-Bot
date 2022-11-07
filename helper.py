@@ -1,5 +1,6 @@
 import MetaTrader5 as mt5
 
+
 class Mt5:
     def __init__(self):
         mt5.initialize()
@@ -35,7 +36,10 @@ class Mt5:
         mt5.shutdown()
 
 
-
+if __name__ == '__main__':
+    mt5 = Mt5()
+    mt5.set_symbol('GBPJPY')
+    mt5.make_order(lot=1, sl=170, tp=165)
 
 # send a trading request
 # check the execution result
