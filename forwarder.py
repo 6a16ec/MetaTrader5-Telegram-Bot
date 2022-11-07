@@ -10,7 +10,7 @@ load_dotenv()
 client = TelegramClient('telethon', int(os.environ["TG_API_ID"]), os.environ["TG_API_HASH"])
 client.start()
 TG_CHANNEL_ID = int(os.environ["TG_CHANNEL_ID"])
-BOT_USERNAME = int(os.environ["BOT_USERNAME"])
+BOT_USERNAME = os.environ["BOT_USERNAME"]
 
 
 @client.on(NewMessage(chats=(TG_CHANNEL_ID,)))
