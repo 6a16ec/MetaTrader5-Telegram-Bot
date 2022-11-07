@@ -6,7 +6,6 @@ class Trader:
         if not mt5.initialize():
             print("initialize() failed, error code =", mt5.last_error())
 
-    @staticmethod
     def make_order(self, symbol, lot, sl, tp):
         symbol_info = mt5.symbol_info(symbol)
         if symbol_info is None:
