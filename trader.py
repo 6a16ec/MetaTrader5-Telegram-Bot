@@ -40,7 +40,7 @@ def make_order(order: Order, lot=0.1, tp_number=1):
         "magic": 234000,
         "comment": "python script open",
         "type_time": mt5.ORDER_TIME_GTC,
-        "type_filling": mt5.ORDER_FILLING_RETURN,
+        "type_filling": 0,
     }
     mt5.order_send(request)
     logging.info('Sent')
