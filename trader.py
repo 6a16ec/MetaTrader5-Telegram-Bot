@@ -1,3 +1,5 @@
+import logging
+
 import MetaTrader5 as mt5
 
 from order import Order
@@ -5,14 +7,17 @@ from order import Order
 
 def make_order(order: Order, lot=0.1):
     if not mt5.initialize():
+        logging.error('Problem with initialize')
         return
     symbol = order.get_symbol()
-    symbol_info = mt5.symbol_info()
+    symbol_info = mt5.symbol_info(symbol)
     if symbol_info is None:
+        logging.error('Problem with symbol_info')
         mt5.shutdown()
         return
     if not symbol_info.visible:
         if not mt5.symbol_select(symbol, True):
+            logging.error('Problem with symbol_info.visible')
             mt5.shutdown()
             return
     if order.get_type() == 'BUY':
@@ -37,4 +42,5 @@ def make_order(order: Order, lot=0.1):
         "type_filling": mt5.ORDER_FILLING_RETURN,
     }
     mt5.order_send(request)
+    logging.info('Sent')
     mt5.shutdown()
